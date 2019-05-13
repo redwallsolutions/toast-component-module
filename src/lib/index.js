@@ -1,3 +1,3 @@
-import ItsWorking from './components/ItsWorking'
+import Toast from './components/Toast'
 
-export {ItsWorking}
+export default Toast

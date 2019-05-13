@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from "react-dom";
 import { ThemeProvider } from 'styled-components';
-import {ItsWorking} from './lib'
+import Toast from './lib'
 
 class App extends React.Component {
 
@@ -16,6 +16,15 @@ class App extends React.Component {
     });
   }
 
+  getToastController = (toastController) => {
+    this.toastController = toastController
+  }
+
+  toast = () => {
+    this.toastController.default({title: "Oi", message: "hauhauhau", timeout: 20000})
+    this.toastController.error({title: 'Ops', message: "This is a error."})
+  }
+
   render() {
     return (
       <ThemeProvider theme={{mode:this.state.mode}}>
@@ -26,7 +35,8 @@ class App extends React.Component {
             <label htmlFor='dark'>Dark Mode</label>
             <input  type='radio' id='dark' name='mode' onChange={this.changeMode}/>
           </div>
-          <ItsWorking/>
+          <Toast appearance='default' getToastController={this.getToastController}/>
+          <button onClick={this.toast}>Toast!</button>
         </div>
       </ThemeProvider>
     )
